@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3763d2b423105b479c6806bef13930a, type: 3}
+  m_Name: Dagger_Damage
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemType: 12
+  itemId: 14
+  itemName: "\uB2E8\uAC80_\uB370\uBBF8\uC9C0"
+  itemIcon: {fileID: 4485672991747649483, guid: d85b6dbcbedce604ab5fbf479715ac85, type: 3}
+  maxLevel: 10
+  baseDesc: "\uB2E8\uAC80 \uB370\uBBF8\uC9C0 \uC99D\uAC00!"
+  levelUpDescs:
+  - "\uB2E8\uAC80 \uB370\uBBF8\uC9C0 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uB370\uBBF8\uC9C0 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uB370\uBBF8\uC9C0 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uB370\uBBF8\uC9C0 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uB370\uBBF8\uC9C0 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uB370\uBBF8\uC9C0 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uB370\uBBF8\uC9C0 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uB370\uBBF8\uC9C0 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uB370\uBBF8\uC9C0 \uC99D\uAC00!"
+  values:
+  - 15
+  - 25
+  - 35
+  - 45
+  - 55
+  - 65
+  - 75
+  - 85
+  - 95
+  - 110

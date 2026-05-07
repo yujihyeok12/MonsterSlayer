@@ -1,0 +1,471 @@
+fileFormatVersion: 2
+guid: 5fd5b5ea00a27df4f883a25b289fcbc3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 171534368166187269
+    second: Rog_Sprite_v1_0
+  - first:
+      213: 7037997468784992358
+    second: Rog_Sprite_v1_1
+  - first:
+      213: -7800297203234527385
+    second: Rog_Sprite_v1_2
+  - first:
+      213: -6820786186919685903
+    second: Rog_Sprite_v1_3
+  - first:
+      213: -6637259214001296444
+    second: Rog_Sprite_v1_4
+  - first:
+      213: -919091655894147188
+    second: Rog_Sprite_v1_5
+  - first:
+      213: -5898249135871401223
+    second: Rog_Sprite_v1_6
+  - first:
+      213: -5348364660571851033
+    second: Rog_Sprite_v1_7
+  - first:
+      213: 3328723494571902170
+    second: Rog_Sprite_v1_8
+  - first:
+      213: 6985508547735209202
+    second: Rog_Sprite_v1_9
+  - first:
+      213: 2895000562022704299
+    second: Rog_Sprite_v1_10
+  - first:
+      213: 7591930254580760799
+    second: Rog_Sprite_v1_11
+  - first:
+      213: -5214639025495517763
+    second: Rog_Sprite_v1_12
+  - first:
+      213: -5839515056137988594
+    second: Rog_Sprite_v1_13
+  - first:
+      213: 5212878850190499081
+    second: Rog_Sprite_v1_14
+  - first:
+      213: 6758135260938451060
+    second: Rog_Sprite_v1_15
+  - first:
+      213: 1864925143419049323
+    second: Rog_Sprite_v1_16
+  - first:
+      213: 659154169465648633
+    second: Rog_Sprite_v1_17
+  - first:
+      213: 1150528685848725440
+    second: Rog_Sprite_v1_18
+  - first:
+      213: 1954248292421894383
+    second: Rog_Sprite_v1_19
+  - first:
+      213: -4302401724099059722
+    second: Rog_Sprite_v1_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Rog_Sprite_v1_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 463
+        width: 85
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50111595999616200800000000000000
+      internalID: 171534368166187269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rog_Sprite_v1_2
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 463
+        width: 89
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8f576e220bbe33f0800000000000000
+      internalID: -919091655894147188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rog_Sprite_v1_3
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 467
+        width: 84
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad48479c160023e20800000000000000
+      internalID: 3328723494571902170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rog_Sprite_v1_4
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 308
+        width: 85
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba46beb3cab1d2820800000000000000
+      internalID: 2895000562022704299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rog_Sprite_v1_5
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 307
+        width: 92
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd0c3dfb754fb5960800000000000000
+      internalID: 7591930254580760799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rog_Sprite_v1_6
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 312
+        width: 84
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db553754f61e1a7b0800000000000000
+      internalID: -5214639025495517763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rog_Sprite_v1_7
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 152
+        width: 85
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e06995adeffd5fea0800000000000000
+      internalID: -5839515056137988594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rog_Sprite_v1_8
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 152
+        width: 84
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90d50caf1bdd75840800000000000000
+      internalID: 5212878850190499081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rog_Sprite_v1_9
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 152
+        width: 84
+        height: 142
+      alignment: 9
+      pivot: {x: 0.51383865, y: 0.4999998}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4783744b638b9cd50800000000000000
+      internalID: 6758135260938451060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rog_Sprite_v1_10
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 11
+        width: 129
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b65df22898b81e910800000000000000
+      internalID: 1864925143419049323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rog_Sprite_v1_11
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 7
+        width: 138
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c709e77ebf77ff00800000000000000
+      internalID: 1150528685848725440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rog_Sprite_v1_12
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 10
+        width: 109
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe088b8c772ee1b10800000000000000
+      internalID: 1954248292421894383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3b0052ff8c3607b4d9733d03e8dfb89d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Rog_Sprite_v1_0: 171534368166187269
+      Rog_Sprite_v1_10: 1864925143419049323
+      Rog_Sprite_v1_11: 1150528685848725440
+      Rog_Sprite_v1_12: 1954248292421894383
+      Rog_Sprite_v1_17: 659154169465648633
+      Rog_Sprite_v1_2: -919091655894147188
+      Rog_Sprite_v1_20: -4302401724099059722
+      Rog_Sprite_v1_3: 3328723494571902170
+      Rog_Sprite_v1_4: 2895000562022704299
+      Rog_Sprite_v1_5: 7591930254580760799
+      Rog_Sprite_v1_6: -5214639025495517763
+      Rog_Sprite_v1_7: -5839515056137988594
+      Rog_Sprite_v1_8: 5212878850190499081
+      Rog_Sprite_v1_9: 6758135260938451060
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

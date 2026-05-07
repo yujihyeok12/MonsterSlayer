@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3763d2b423105b479c6806bef13930a, type: 3}
+  m_Name: Flying_Damage
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemType: 3
+  itemId: 4
+  itemName: "\uC774\uAE30\uC5B4\uAC80_\uB370\uBBF8\uC9C0"
+  itemIcon: {fileID: -1291213572037101134, guid: d85b6dbcbedce604ab5fbf479715ac85, type: 3}
+  maxLevel: 10
+  baseDesc: "\uC774\uAE30\uC5B4\uAC80 \uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00!"
+  levelUpDescs:
+  - "\uC774\uAE30\uC5B4\uAC80 \uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00!"
+  - "\uC774\uAE30\uC5B4\uAC80 \uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00!"
+  - "\uC774\uAE30\uC5B4\uAC80 \uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00!"
+  - "\uC774\uAE30\uC5B4\uAC80 \uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00!"
+  - "\uC774\uAE30\uC5B4\uAC80 \uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00!"
+  - "\uC774\uAE30\uC5B4\uAC80 \uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00!"
+  - "\uC774\uAE30\uC5B4\uAC80 \uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00!"
+  - "\uC774\uAE30\uC5B4\uAC80 \uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00!"
+  - "\uC774\uAE30\uC5B4\uAC80 \uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00!"
+  values:
+  - 5
+  - 10
+  - 15
+  - 20
+  - 25
+  - 30
+  - 35
+  - 40
+  - 45
+  - 50

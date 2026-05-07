@@ -1,0 +1,364 @@
+fileFormatVersion: 2
+guid: 3c6441df2c690ad46a64831d7faf7342
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7718624343851470998
+    second: TH_0
+  - first:
+      213: 2757167153782863197
+    second: TH_1
+  - first:
+      213: 3908115523730371554
+    second: TH_2
+  - first:
+      213: -4175061662889851142
+    second: TH_3
+  - first:
+      213: -2183438656358097459
+    second: TH_4
+  - first:
+      213: 9162380313901666964
+    second: TH_5
+  - first:
+      213: -4303486096605853798
+    second: TH_6
+  - first:
+      213: -8175584208069445881
+    second: TH_7
+  - first:
+      213: 7052777595059451064
+    second: TH_8
+  - first:
+      213: -4926551720392778464
+    second: TH_9
+  - first:
+      213: 206636647943773320
+    second: TH_10
+  - first:
+      213: -7436148778655657985
+    second: TH_11
+  - first:
+      213: 5188237675649551864
+    second: TH_12
+  - first:
+      213: 5824155853371784508
+    second: TH_13
+  - first:
+      213: -2890148215112992803
+    second: TH_14
+  - first:
+      213: 5605816798098148536
+    second: TH_15
+  - first:
+      213: -2475909497173528813
+    second: TH_16
+  - first:
+      213: 7727716359476000705
+    second: TH_17
+  - first:
+      213: -3748104624678624145
+    second: TH_18
+  - first:
+      213: 5075751486967259344
+    second: TH_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TH_0
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 440
+        width: 33
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6fec06ed00f1e490800000000000000
+      internalID: -7718624343851470998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TH_1
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 265
+        width: 31
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d553a931bec634620800000000000000
+      internalID: 2757167153782863197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TH_2
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 258
+        width: 57
+        height: 238
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e3732ddc5a6c3630800000000000000
+      internalID: 3908115523730371554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TH_3
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 258
+        width: 99
+        height: 238
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af6491cb9833f06c0800000000000000
+      internalID: -4175061662889851142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TH_6
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 8
+        width: 67
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcd5be24c1ed2b1e0800000000000000
+      internalID: -2183438656358097459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TH_4
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 7
+        width: 77
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a97c9fb2232f644c0800000000000000
+      internalID: -4303486096605853798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TH_5
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 8
+        width: 64
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7073ab69a7d7a8e80800000000000000
+      internalID: -8175584208069445881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: df14449e992a5744193e88ebbc034d9b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      TH_0: -7718624343851470998
+      TH_1: 2757167153782863197
+      TH_10: 206636647943773320
+      TH_11: -7436148778655657985
+      TH_12: 5188237675649551864
+      TH_13: 5824155853371784508
+      TH_14: -2890148215112992803
+      TH_15: 5605816798098148536
+      TH_16: -2475909497173528813
+      TH_17: 7727716359476000705
+      TH_18: -3748104624678624145
+      TH_19: 5075751486967259344
+      TH_2: 3908115523730371554
+      TH_20: -1983930449
+      TH_3: -4175061662889851142
+      TH_4: -4303486096605853798
+      TH_5: -8175584208069445881
+      TH_6: -2183438656358097459
+      TH_8: 7052777595059451064
+      TH_9: -4926551720392778464
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3763d2b423105b479c6806bef13930a, type: 3}
+  m_Name: Dragon_Damage
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemType: 6
+  itemId: 8
+  itemName: "\uB4DC\uB798\uACE4_Damage"
+  itemIcon: {fileID: 5888767801657961059, guid: d85b6dbcbedce604ab5fbf479715ac85, type: 3}
+  maxLevel: 10
+  baseDesc: "\uB4DC\uB798\uACE4 \uB370\uBBF8\uC9C0 \uC99D\uAC00!"
+  levelUpDescs:
+  - "\uB4DC\uB798\uACE4 \uB370\uBBF8\uC9C0 \uC99D\uAC00! "
+  - "\uB4DC\uB798\uACE4 \uB370\uBBF8\uC9C0 \uC99D\uAC00! "
+  - "\uB4DC\uB798\uACE4 \uB370\uBBF8\uC9C0 \uC99D\uAC00! "
+  - "\uB4DC\uB798\uACE4 \uB370\uBBF8\uC9C0 \uC99D\uAC00! "
+  - "\uB4DC\uB798\uACE4 \uB370\uBBF8\uC9C0 \uC99D\uAC00! "
+  - "\uB4DC\uB798\uACE4 \uB370\uBBF8\uC9C0 \uC99D\uAC00! "
+  - "\uB4DC\uB798\uACE4 \uB370\uBBF8\uC9C0 \uC99D\uAC00! "
+  - "\uB4DC\uB798\uACE4 \uB370\uBBF8\uC9C0 \uC99D\uAC00! "
+  - "\uB4DC\uB798\uACE4 \uB370\uBBF8\uC9C0 \uC99D\uAC00! "
+  values:
+  - 8
+  - 15
+  - 20
+  - 30
+  - 40
+  - 50
+  - 60
+  - 70
+  - 80
+  - 100

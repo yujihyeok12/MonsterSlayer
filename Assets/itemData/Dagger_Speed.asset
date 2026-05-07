@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3763d2b423105b479c6806bef13930a, type: 3}
+  m_Name: Dagger_Speed
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemType: 14
+  itemId: 15
+  itemName: "\uB2E8\uAC80_\uC2A4\uD53C\uB4DC"
+  itemIcon: {fileID: 4485672991747649483, guid: d85b6dbcbedce604ab5fbf479715ac85, type: 3}
+  maxLevel: 10
+  baseDesc: "\uB2E8\uAC80 \uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00!"
+  levelUpDescs:
+  - "\uB2E8\uAC80 \uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00!"
+  - "\uB2E8\uAC80 \uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00!"
+  values:
+  - 1.5
+  - 1.4
+  - 1.3
+  - 1.2
+  - 1.1
+  - 1
+  - 0.9
+  - 0.8
+  - 0.7
+  - 0.6
