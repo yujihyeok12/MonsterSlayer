@@ -209,7 +209,7 @@ MonoBehaviour:
   healItemPrefab: {fileID: 6334961334880043714, guid: ced26d06788eee04cbfb068851bd9f48, type: 3}
   magnetItemPrefab: {fileID: 5837710259824442910, guid: bdbb73c898db1a140bcf6bc102c795e8, type: 3}
   treasureChestPrefab: {fileID: 8365863307936978580, guid: 574afbd518930b043a698a293a6a418c, type: 3}
-  dropExpAmount: 500
+  dropExpAmount: 5000
   expGemPoolIndex: 6
 --- !u!1 &9192150282455255382
 GameObject:

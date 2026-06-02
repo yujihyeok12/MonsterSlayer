@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public GameObject flyingSwordPrefab;    
     public LightningWeapon lightningWeapon;
     public ThrowingDaggerWeapon daggerWeapon;
+    public SwordAuraWeapon auraWeapon;
     public float playerBaseSpeed = 5f;      
     public float vampireHealAmount = 0f;    
 
@@ -83,6 +84,13 @@ public class GameManager : MonoBehaviour
     public bool isMonsterFreeze = false; 
 
     public bool isCinematic = false;
+
+    [Header("--- 무한 모드 연출 UI ---")]
+    public GameObject infiniteModeImagePanel;
+
+    [Header("--- 무한 모드 및 한계 돌파 ---")]
+    public ItemData[] limitBreakItems;
+    private float lastNextExp;
 
     [System.Serializable]
     public class CharacterStat
@@ -147,23 +155,6 @@ public class GameManager : MonoBehaviour
             if (playerAnim != null) playerAnim.runtimeAnimatorController = playerAnimators[selectedCharIndex];
         }
 
-        if (charStats != null && charStats.Length > selectedCharIndex)
-        {
-            CharacterStat myStat = charStats[selectedCharIndex];
-
-            player.maxHealth = myStat.maxHealth;
-            player.speed = myStat.speed;
-            player.armor = myStat.armor;
-            player.magnetRange = myStat.magnetRange;
-
-            player.currentHealth = player.maxHealth;
-            if (player.hpSlider != null)
-            {
-                player.hpSlider.maxValue = player.maxHealth;
-                player.hpSlider.value = player.currentHealth;
-            }
-        }
-
         if (SoundManager.instance != null) SoundManager.instance.PlayBGM(false);
 
         if (charStats != null && charStats.Length > selectedCharIndex)
@@ -175,21 +166,21 @@ public class GameManager : MonoBehaviour
             int bonusArmorLevel = PlayerPrefs.GetInt("Char_" + selectedCharIndex + "_Armor", 0);
             int bonusMagnetLevel = PlayerPrefs.GetInt("Char_" + selectedCharIndex + "_Magnet", 0);
 
-            player.maxHealth = myStat.maxHealth + (bonusHpLevel * 20f);       // 1렙당 체력 20 증가
-            player.speed = myStat.speed + (bonusSpeedLevel * 0.5f);           // 1렙당 이속 0.5 증가
-            player.armor = myStat.armor + (bonusArmorLevel * 1f);             // 1렙당 방어력 1 증가
-            player.magnetRange = myStat.magnetRange + (bonusMagnetLevel * 0.5f); // 1렙당 자석범위 0.5 증가
+            player.speed = myStat.speed + (bonusSpeedLevel * 0.5f);
+            player.armor = myStat.armor + (bonusArmorLevel * 1f);
+            player.magnetRange = myStat.magnetRange + (bonusMagnetLevel * 0.5f);
+
+            player.baseMaxHealth = myStat.maxHealth + (bonusHpLevel * 20f);
+
+            player.UpdateMaxHealth();
 
             player.currentHealth = player.maxHealth;
-            if (player.hpSlider != null)
-            {
-                player.hpSlider.maxValue = player.maxHealth;
-                player.hpSlider.value = player.currentHealth;
-            }
+            player.UpdateHpUI();
 
-            Debug.Log($"적용된 스탯 - 체력: {player.maxHealth}, 이속: {player.speed}, 아머: {player.armor}, 자석: {player.magnetRange}");
+            Debug.Log($"적용된 스탯 - 찐체력: {player.baseMaxHealth}, 이속: {player.speed}, 아머: {player.armor}, 자석: {player.magnetRange}");
         }
 
+        lastNextExp = nextExp[maxLevel - 1];
         StartCoroutine(GameStartRoutine());
     }
 
@@ -210,7 +201,60 @@ public class GameManager : MonoBehaviour
             AddGold(9999);
         }
     }
+    private struct Record
+    {
+        public float time;
+        public int kills;
+        public Record(float t, int k) { time = t; kills = k; }
+    }
+    public void SaveBestRecords()
+    {
+        List<Record> records = new List<Record>();
 
+        records.Add(new Record(gameTime, killCount));
+
+        for (int i = 1; i <= 3; i++)
+        {
+            float t = PlayerPrefs.GetFloat("Rank" + i + "_Time", 0f);
+            int k = PlayerPrefs.GetInt("Rank" + i + "_Kills", 0);
+            if (t > 0 || k > 0) records.Add(new Record(t, k));
+        }
+
+        records.Sort((a, b) => {
+            if (b.time.CompareTo(a.time) != 0) return b.time.CompareTo(a.time);
+            return b.kills.CompareTo(a.kills);
+        });
+
+        for (int i = 0; i < 3 && i < records.Count; i++)
+        {
+            PlayerPrefs.SetFloat("Rank" + (i + 1) + "_Time", records[i].time);
+            PlayerPrefs.SetInt("Rank" + (i + 1) + "_Kills", records[i].kills);
+        }
+
+        PlayerPrefs.DeleteKey("BestTime");
+        PlayerPrefs.DeleteKey("BestKills");
+
+        PlayerPrefs.Save();
+    }
+    public void ContinueToInfiniteMode()
+    {
+        if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.SFX.Click);
+        StartCoroutine(InfiniteTransitionRoutine());
+    }
+
+    IEnumerator InfiniteTransitionRoutine()
+    {
+        if (gameClearPanel != null) gameClearPanel.SetActive(false);
+
+        if (infiniteModeImagePanel != null) infiniteModeImagePanel.SetActive(true);
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        if (infiniteModeImagePanel != null) infiniteModeImagePanel.SetActive(false);
+
+        Spawner.instance.StartInfiniteMode(); 
+        Time.timeScale = 1f; 
+    }
     IEnumerator GameStartRoutine()
     {
         Time.timeScale = 0f;
@@ -225,6 +269,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        SaveBestRecords();
+
         Time.timeScale = 0f; 
         if (gameOverPanel != null) gameOverPanel.SetActive(true);
         if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.SFX.GameLose);
@@ -232,6 +278,8 @@ public class GameManager : MonoBehaviour
 
     public void GameClear()
     {
+        SaveBestRecords();
+
         Time.timeScale = 0f;
         if (gameClearPanel != null) gameClearPanel.SetActive(true);
         if (SoundManager.instance != null) SoundManager.instance.PlaySFX(SoundManager.SFX.GameWin);
@@ -243,7 +291,8 @@ public class GameManager : MonoBehaviour
            (startMessagePanel != null && startMessagePanel.activeSelf) ||
            (gameOverPanel != null && gameOverPanel.activeSelf) ||
            (gameClearPanel != null && gameClearPanel.activeSelf) ||
-           (treasurePanel != null && treasurePanel.activeSelf) || 
+           (treasurePanel != null && treasurePanel.activeSelf) ||
+           (infiniteModeImagePanel != null && infiniteModeImagePanel.activeSelf) || 
            isCinematic)
         {
             return;
@@ -352,21 +401,21 @@ public class GameManager : MonoBehaviour
 
     public void GetExp(float amount)
     {
-        if (level >= maxLevel) return;
-
         float finalExp = amount * expMultiplier;
         exp += finalExp;
 
-        while (level < maxLevel && exp >= nextExp[level - 1])
+        float targetExp = (level >= maxLevel) ? lastNextExp : nextExp[level - 1];
+
+        while (exp >= targetExp)
         {
-            exp -= nextExp[level - 1];
-            level++;
+            exp -= targetExp;
+            level++; 
             pendingLevelUps++;
+
+            targetExp = (level >= maxLevel) ? lastNextExp : nextExp[level - 1];
         }
-        if (pendingLevelUps > 0 && !levelUpPanel.activeSelf)
-        {
-            ShowLevelUpUI();
-        }
+
+        if (pendingLevelUps > 0 && !levelUpPanel.activeSelf) ShowLevelUpUI();
         UpdateUI();
     }
 
@@ -376,13 +425,85 @@ public class GameManager : MonoBehaviour
 
         if (expSlider != null)
         {
-            if (level < maxLevel) expSlider.value = exp / nextExp[level - 1];
-            else expSlider.value = 1f;
+            float targetExp = (level >= maxLevel) ? lastNextExp : nextExp[level - 1];
+            expSlider.value = exp / targetExp;
         }
     }
 
+    // 🌟 1. 카드 선택 함수 (더블 클릭 방지 및 시각적 리셋 추가)
+    public void OnSkillSelected(int cardIndex)
+    {
+        if (pendingLevelUps <= 0) return; // 미친듯한 연타로 인한 더블 클릭 완벽 방어!
+
+        SoundManager.instance.PlaySFX(SoundManager.SFX.Click);
+        ItemData chosenItem = selectedCards[cardIndex];
+
+        bool isLimitBreak = (chosenItem.itemType == ItemData.ItemType.LimitBreak_Damage ||
+                             chosenItem.itemType == ItemData.ItemType.LimitBreak_Heal ||
+                             chosenItem.itemType == ItemData.ItemType.LimitBreak_Gold ||
+                             chosenItem.itemType == ItemData.ItemType.LimitBreak_Armor ||
+                             chosenItem.itemType == ItemData.ItemType.LimitBreak_MaxHp);
+
+        if (isLimitBreak)
+        {
+            ApplyItemEffect(chosenItem.itemType, 0f, 0);
+        }
+        else
+        {
+            ItemData.ItemType baseType = GetWeaponBaseType(chosenItem.itemType);
+            bool isPassive = (chosenItem.itemType == ItemData.ItemType.Passive_Boots ||
+                              chosenItem.itemType == ItemData.ItemType.Passive_Armor ||
+                              chosenItem.itemType == ItemData.ItemType.Passive_Vampire ||
+                              chosenItem.itemType == ItemData.ItemType.Passive_MaxHp ||
+                              chosenItem.itemType == ItemData.ItemType.Passive_Magnet ||
+                              chosenItem.itemType == ItemData.ItemType.Passive_Exp);
+
+            if (isPassive)
+            {
+                if (itemLevels[chosenItem.itemType] == 0 && !acquiredPassives.Contains(chosenItem.itemType))
+                    acquiredPassives.Add(chosenItem.itemType);
+            }
+            else
+            {
+                if (itemLevels[baseType] == 0 && !acquiredWeapons.Contains(baseType))
+                    acquiredWeapons.Add(baseType);
+            }
+
+            itemLevels[chosenItem.itemType]++;
+            int newLevel = itemLevels[chosenItem.itemType];
+            float statValue = chosenItem.values[newLevel - 1];
+
+            ApplyItemEffect(chosenItem.itemType, statValue, newLevel);
+        }
+
+        pendingLevelUps--;
+        levelUpPanel.SetActive(false); // 🌟 핵심: 창을 잠시 닫아서 카드가 씹히는 걸 시각적/물리적으로 막음
+
+        if (pendingLevelUps > 0)
+        {
+            StartCoroutine(NextLevelUpRoutine()); // 0.1초 뒤에 다음 창 열기
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+
+        UpdateInventoryUI();
+    }
+
+    // 🌟 2. 부드러운 연속 레벨업을 위한 짧은 대기 코루틴
+    IEnumerator NextLevelUpRoutine()
+    {
+        yield return new WaitForSecondsRealtime(0.1f); // 0.1초 동안 화면이 번쩍이며 다음 렙업 인지시킴
+        ShowLevelUpUI();
+    }
+
+    // 🌟 3. 레벨업 패널 띄우기 (만렙 건너뛰기 버그 해결)
     void ShowLevelUpUI()
     {
+        // 🌟 핵심: 한 번에 폭업을 했더라도, '현재 처리 중인 패널의 진짜 레벨'을 역산해서 보여줍니다.
+        int currentPanelLevel = level - pendingLevelUps + 1;
+
         int currentWeapons = GetCurrentWeaponCount();
         int currentPassives = GetCurrentPassiveCount();
 
@@ -392,7 +513,6 @@ public class GameManager : MonoBehaviour
         {
             if (itemLevels[item.itemType] >= item.maxLevel) continue;
 
-            // 패시브인지 무기인지 판별
             bool isPassive = (item.itemType == ItemData.ItemType.Passive_Boots ||
                               item.itemType == ItemData.ItemType.Passive_Armor ||
                               item.itemType == ItemData.ItemType.Passive_Vampire ||
@@ -421,15 +541,31 @@ public class GameManager : MonoBehaviour
             availableItems.Add(item);
         }
 
-        if (availableItems.Count == 0)
-        {
-            return;
-        }
+        // 🌟 만렙에 도달했거나, 일반 아이템을 모조리 다 찍어서 더 이상 나올 게 없으면 한계 돌파를 띄웁니다!
+        bool isLimitBreakTime = (currentPanelLevel >= maxLevel) || (availableItems.Count == 0);
 
         levelUpPanel.SetActive(true);
         SoundManager.instance.PlaySFX(SoundManager.SFX.LevelUp);
         Time.timeScale = 0f;
 
+        if (isLimitBreakTime && limitBreakItems != null && limitBreakItems.Length >= 3)
+        {
+            List<ItemData> lbPool = new List<ItemData>(limitBreakItems);
+            for (int i = 0; i < 3; i++)
+            {
+                int randIndex = Random.Range(0, lbPool.Count);
+                ItemData chosenLB = lbPool[randIndex];
+
+                selectedCards[i] = chosenLB;
+                uiCards[i].SetupCard(chosenLB, 0, 0);
+                uiCards[i].gameObject.SetActive(true);
+
+                lbPool.RemoveAt(randIndex);
+            }
+            return;
+        }
+
+        // 일반 아이템 띄우기
         for (int i = 0; i < 3; i++)
         {
             if (availableItems.Count > 0)
@@ -450,51 +586,6 @@ public class GameManager : MonoBehaviour
                 uiCards[i].gameObject.SetActive(false);
             }
         }
-    }
-
-    public void OnSkillSelected(int cardIndex)
-    {
-        SoundManager.instance.PlaySFX(SoundManager.SFX.Click);
-        ItemData chosenItem = selectedCards[cardIndex];
-        ItemData.ItemType baseType = GetWeaponBaseType(chosenItem.itemType);
-
-        bool isPassive = (chosenItem.itemType == ItemData.ItemType.Passive_Boots ||
-                          chosenItem.itemType == ItemData.ItemType.Passive_Armor ||
-                          chosenItem.itemType == ItemData.ItemType.Passive_Vampire ||
-                          chosenItem.itemType == ItemData.ItemType.Passive_MaxHp ||
-                          chosenItem.itemType == ItemData.ItemType.Passive_Magnet ||
-                          chosenItem.itemType == ItemData.ItemType.Passive_Exp);
-
-        if (isPassive)
-        {
-            if (itemLevels[chosenItem.itemType] == 0 && !acquiredPassives.Contains(chosenItem.itemType))
-                acquiredPassives.Add(chosenItem.itemType);
-        }
-        else
-        {
-            if (itemLevels[baseType] == 0 && !acquiredWeapons.Contains(baseType))
-                acquiredWeapons.Add(baseType);
-        }
-
-        itemLevels[chosenItem.itemType]++;
-        int newLevel = itemLevels[chosenItem.itemType];
-        float statValue = chosenItem.values[newLevel - 1];
-
-        ApplyItemEffect(chosenItem.itemType, statValue, newLevel);
-
-        pendingLevelUps--;
-
-        if (pendingLevelUps > 0)
-        {
-            ShowLevelUpUI();
-        }
-        else
-        {
-            levelUpPanel.SetActive(false);
-            Time.timeScale = 1f;
-        }
-
-        UpdateInventoryUI();
     }
 
     void ApplyItemEffect(ItemData.ItemType type, float value, int level)
@@ -577,6 +668,18 @@ public class GameManager : MonoBehaviour
                 daggerWeapon.fireRate = value;   
                 break;
 
+            // --- 6. 검기 (Sword Aura) ---
+            case ItemData.ItemType.Aura_Size:
+                if (!auraWeapon.gameObject.activeSelf) auraWeapon.gameObject.SetActive(true);
+                auraWeapon.sizeMultiplier = value;
+                break;
+            case ItemData.ItemType.Aura_Damage:
+                auraWeapon.damage = value;
+                break;
+            case ItemData.ItemType.Aura_Distance:
+                auraWeapon.maxDistance = value;
+                break;
+
             // --- 4. 패시브 스탯 --- 
             case ItemData.ItemType.Passive_Boots:
                 player.speed += value; 
@@ -588,14 +691,35 @@ public class GameManager : MonoBehaviour
                 vampireHealAmount += value; 
                 break;
             case ItemData.ItemType.Passive_MaxHp:
-                player.maxHealth += value; 
-                player.Heal(value);       
+                player.flatMaxHpBonus += value;
+                player.UpdateMaxHealth(); 
                 break;
             case ItemData.ItemType.Passive_Magnet:
                 player.magnetRange += value; 
                 break;
             case ItemData.ItemType.Passive_Exp:
                 expMultiplier += value; 
+                break;
+
+            case ItemData.ItemType.LimitBreak_Damage:
+                player.damageMultiplier += 0.01f; // 데미지 배율 1% 증가 (0.01f)
+                break;
+
+            case ItemData.ItemType.LimitBreak_Heal:
+                player.Heal(player.maxHealth * 0.5f); // 최대 체력의 50% 회복
+                break;
+
+            case ItemData.ItemType.LimitBreak_Gold:
+                AddGold(100); // 골드 100 획득
+                break;
+
+            case ItemData.ItemType.LimitBreak_Armor:
+                player.armorMultiplier += 0.01f; // 방어력 배율 1% 증가
+                break;
+
+            case ItemData.ItemType.LimitBreak_MaxHp:
+                player.maxHpMultiplier += 0.01f; // 최대 체력 배율 1% 증가
+                player.UpdateMaxHealth();        // 체력 수치 갱신
                 break;
         }
     }
@@ -629,6 +753,11 @@ public class GameManager : MonoBehaviour
             case ItemData.ItemType.Dagger_Speed:
                 return itemLevels[ItemData.ItemType.Dagger_Count] + itemLevels[ItemData.ItemType.Dagger_Damage] + itemLevels[ItemData.ItemType.Dagger_Speed];
 
+            case ItemData.ItemType.Aura_Size:
+            case ItemData.ItemType.Aura_Damage:
+            case ItemData.ItemType.Aura_Distance:
+                return itemLevels[ItemData.ItemType.Aura_Size] + itemLevels[ItemData.ItemType.Aura_Damage] + itemLevels[ItemData.ItemType.Aura_Distance];
+
             default:
                 return itemLevels[type]; 
         }
@@ -642,6 +771,7 @@ public class GameManager : MonoBehaviour
         if (itemLevels[ItemData.ItemType.Dragon_Count] > 0) count++;
         if (itemLevels[ItemData.ItemType.Lightning_Count] > 0) count++;
         if (itemLevels[ItemData.ItemType.Dagger_Count] > 0) count++;
+        if (itemLevels[ItemData.ItemType.Aura_Size] > 0) count++;
         return count;
     }
 
@@ -666,6 +796,7 @@ public class GameManager : MonoBehaviour
             case ItemData.ItemType.Dragon_Count: case ItemData.ItemType.Dragon_Damage: case ItemData.ItemType.Dragon_Speed: return ItemData.ItemType.Dragon_Count;
             case ItemData.ItemType.Lightning_Count: case ItemData.ItemType.Lightning_Damage: case ItemData.ItemType.Lightning_Range: return ItemData.ItemType.Lightning_Count;
             case ItemData.ItemType.Dagger_Count: case ItemData.ItemType.Dagger_Damage: case ItemData.ItemType.Dagger_Speed: return ItemData.ItemType.Dagger_Count;
+            case ItemData.ItemType.Aura_Size: case ItemData.ItemType.Aura_Damage: case ItemData.ItemType.Aura_Distance: return ItemData.ItemType.Aura_Size;
             default: return type; 
         }
     }
@@ -900,69 +1031,3 @@ public class GameManager : MonoBehaviour
         }
     }
 }
-
-/*
-====================================================================================================
-[ GameManager.cs 완벽 해설서 (게임 코어/총괄 매니저)]
-
-이 스크립트는 게임의 '두뇌'이자 '사장님'입니다. 
-경험치, 레벨업, 스탯 적용, UI 갱신, 아이템 뽑기 확률, 보물상자 로직, 그리고 시간 정지 연출까지 
-게임의 모든 굵직한 톱니바퀴가 맞물려 돌아가는 중심축입니다.
-
-----------------------------------------------------------------------------------------------------
-[1. 핵심 데이터 관리 (Data Management)]
-이 게임의 뱀서류(로그라이트) 빌드 시스템이 돌아가는 핵심 원리입니다.
-
-- itemLevels (Dictionary): 
-  내가 현재 어떤 능력을 몇 레벨까지 찍었는지 기록하는 '메인 장부'입니다. 
-  예를 들어 <Orbit_Count, 3>, <Orbit_Damage, 2> 이런 식으로 저장됩니다.
-- acquiredWeapons / acquiredPassives (List):
-  UI 하단 인벤토리에 순서대로 띄워주기 위해, 내가 '최초로 획득한 무기/패시브의 본체 타입'을 순서대로 담아두는 가방입니다.
-- charStats (배열): 기사, 마법사 등 캐릭터별 고유 기본 스탯(체력, 이속, 자석 범위 등)을 인스펙터에서 설정해두는 곳입니다.
-
-----------------------------------------------------------------------------------------------------
-[2. 주요 작동 흐름 및 함수 상세 (Core Flows)]
-
-👉 A. 게임 시작 및 초기화 (Start)
-1. PlayerPrefs 연동: 로비에서 투자한 골드(TotalGold)와 영구 스탯 강화 수치(Char_0_HP 등)를 불러와서 캐릭터의 기본 스탯에 더해줍니다.
-2. 무기 세팅: 로비에서 고른 캐릭터 번호에 맞춰 시작 무기를 쥐여줍니다. (기사=회전검, 도적=단검 등)
-3. UI 초기화: 시작하자마자 보물상자 슬롯 등을 다 꺼두고, GameStartRoutine을 돌려 2초간 화면을 멈춘 채 "게임 시작" 문구를 띄웁니다.
-
-👉 B. 경험치와 레벨업 시스템
-1. InitExpTable(): 레벨 구간마다 필요한 경험치 통을 늘려줍니다. (1~30렙은 150씩, 31~70렙은 200씩, 그 이상은 250씩 증가)
-2. GetExp(amount): 보석을 먹을 때마다 expMultiplier(경험치 증가 패시브)를 곱해서 더합니다. 만약 경험치가 꽉 차면 레벨을 올리고 ShowLevelUpUI()를 부릅니다.
-3. ShowLevelUpUI() 🌟[이 게임에서 가장 복잡하고 중요한 로직]:
-   - 무작위 3개의 카드를 뽑는 함수입니다. 하지만 아무거나 뽑지 않고 깐깐한 '필터링'을 거칩니다.
-   - [필터 1] 이미 만렙(maxLevel)을 찍은 스탯은 후보에서 뺍니다.
-   - [필터 2] 내가 가진 무기/패시브가 이미 3개(최대치) 꽉 찼다면, 아예 새로운 종류의 무기/패시브 카드는 후보에서 뺍니다. (먹던 것만 마저 강화하라는 뜻)
-   - [필터 3] 특정 무기(예: 회전검)의 하위 스탯(데미지, 속도 등)의 레벨 총합이 25렙을 넘으면 더 이상 안 나오게 막습니다.
-   - 이 필터를 모두 통과한 녀석들 중에서만 랜덤으로 3개를 뽑아 화면(uiCards)에 띄워주고 시간을 멈춥니다(Time.timeScale = 0).
-
-👉 C. 스킬 선택 및 적용 로직
-1. OnSkillSelected(cardIndex): 유저가 카드를 고르면 장부(itemLevels)에 레벨을 +1 해주고, 가방에 없는 거면 새로 담아줍니다.
-2. ApplyItemEffect() 🌟[실제 스탯 갱신]:
-   - 고른 카드가 '회전검 개수(Orbit_Count)'라면 프리팹을 실제로 복사(Instantiate)해서 플레이어 주변에 추가로 달아줍니다.
-   - 고른 카드가 '스피드(Passive_Boots)'라면 즉시 player.speed 값을 올려줍니다.
-3. 헬퍼 함수들 (GetWeaponTotalLevel, GetWeaponBaseType):
-   - '회전검'이라는 하나의 무기를 완성하려면 (개수+데미지+속도) 3개의 스크립터블 오브젝트(SO)가 필요합니다. 이 3개의 레벨을 합쳐서(TotalLevel) 화면 하단 UI 슬롯 1칸에 합산해서 보여주기 위해 묶어주는 역할을 합니다.
-
-👉 D. 보물상자 시스템
-1. OpenTreasureChest(): 몬스터가 1% 확률로 떨군 상자를 먹으면 실행됩니다. 
-   - 일반 레벨업과 달리 5% 확률로 대박 아이템(해골)이 나오거나, 95% 확률로 일반 스탯업 아이템(하트, 부츠 등)이 뽑히게 룰렛을 돌립니다.
-2. AcquireTreasure(): 뽑힌 보상에 따라 배율(multiplier)을 영구적으로 올려줍니다.
-3. UpdateTreasureUI() 🌟[하노이 탑 중앙 정렬 UI]:
-   - 먹은 아이템이 1개면 중앙, 2개면 양옆으로 쫙 퍼지는 예쁜 UI를 만들기 위해, 무조건 '모든 칸을 비활성화(SetActive(false))'한 다음, 내가 먹은 개수만큼만 딱 켜줍니다(SetActive(true)). (이렇게 해야 유니티 Layout Group이 알아서 중앙으로 모아줍니다)
-
-👉 E. 카메라 및 특수 연출 (시간 정지 연출법)
-- BossWarningRoutine() & ReviveRoutine():
-  시간이 정지된 상태(Time.timeScale = 0)에서는 일반적인 Time.deltaTime이나 애니메이션이 작동하지 않습니다. 
-  그래서 이 코루틴들 안에서는 현실의 시간인 `Time.unscaledDeltaTime`을 사용해서 카메라를 스르륵 이동시키거나 화면을 어둡게 만드는 시네마틱 연출을 구현했습니다.
-
-----------------------------------------------------------------------------------------------------
-[핵심 요약]
-- 새로운 무기를 추가하고 싶다면? 
-  -> ItemData에 열거형(Enum)을 추가하고, 이 스크립트의 ApplyItemEffect()와 GetWeaponTotalLevel() 등에 case를 추가해주면 끝납니다.
-- 밸런스를 고치고 싶다면?
-  -> 무기별 수치는 유니티 에디터의 Scriptable Object에서, 레벨업 요구량은 InitExpTable()에서 수정하세요.
-====================================================================================================
-*/

@@ -29,9 +29,9 @@ public class Player : MonoBehaviour
     public float speedMultiplier = 1.0f;
     public float flatMaxHpBonus = 0f;     
     public float hpRegenAmount = 0f;       
-    public int reviveCount = 0;            
+    public int reviveCount = 0;
 
-    private float baseMaxHealth;
+    [HideInInspector] public float baseMaxHealth;
 
     [Header("사운드 설정")]
     public float stepInterval = 0.35f;
@@ -51,7 +51,6 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        baseMaxHealth = maxHealth;
         currentHealth = maxHealth;
         UpdateMaxHealth();
 
@@ -100,7 +99,18 @@ public class Player : MonoBehaviour
     }
     public void UpdateMaxHealth()
     {
+        if (baseMaxHealth == 0f) baseMaxHealth = maxHealth;
+
+        float oldMax = maxHealth;
+
         maxHealth = (baseMaxHealth + flatMaxHpBonus) * maxHpMultiplier;
+
+        float difference = maxHealth - oldMax;
+        if (difference > 0)
+        {
+            currentHealth += difference;
+        }
+
         if (currentHealth > maxHealth) currentHealth = maxHealth;
 
         UpdateHpUI();
@@ -128,6 +138,12 @@ public class Player : MonoBehaviour
         float finalDamage = Mathf.Max(1f, damageAmount - finalArmor);
 
         currentHealth -= finalDamage;
+
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
+
         hitTimer = invincibilityTime;
 
         UpdateHpUI();
@@ -214,17 +230,3 @@ public class Player : MonoBehaviour
         }
     }
 }
-
-/*
-========================================================
-[ Player.cs 상세 설명서 (플레이어 컨트롤 & 스탯 종합)]
-1. 스크립트 역할:
-   - 유저의 키 입력을 받아 이동시키고, 아이템으로 뻥튀기된 최종 스탯들을 계산하며 피격/사망 판정을 관리합니다.
-
-2. 핵심 작동 흐름 및 함수:
-   - FixedUpdate(): Input.GetAxisRaw로 받은 X, Y 방향에 플레이어의 (기본 속도 * 보물상자 배율)을 곱해서 끊김 없이 물리적으로 이동(MovePosition)시킵니다.
-   - UpdateMaxHealth(): 하트나 용사의 갑옷을 먹었을 때 호출됩니다. (내 원래 체력 + 하트 고정 수치)에 갑옷 배율(%)을 곱해서 찐 최종 체력을 계산합니다.
-   - TakeDamage(): 맞았을 때 무적 시간(hitTimer)이 돌고 있다면 무시하고, 아니면 (몬스터 데미지 - 내 방어력)만큼 피를 깎은 뒤 0이 되면 Die()로 보냅니다.
-   - Die(): 죽었을 때 해골(reviveCount)이 남아있으면 피를 50% 채우고 부활! 없으면 GameManager.GameOver()를 불러 진짜 게임을 끝냅니다.
-========================================================
-*/

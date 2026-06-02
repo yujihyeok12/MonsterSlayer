@@ -36,7 +36,19 @@ public class ItemData : ScriptableObject
         Passive_Vampire,// 흡혈 확률/회복량 증가
         Passive_MaxHp,  // 최대 체력 증가
         Passive_Magnet, // 자석
-        Passive_Exp //경험치 증가
+        Passive_Exp, //경험치 증가
+
+        LimitBreak_Damage, // 영구 데미지 상승
+        LimitBreak_Heal,   // 체력 50% 회복
+        LimitBreak_Gold,    // 100 골드 획득
+
+
+        Aura_Size,
+        Aura_Damage,
+        Aura_Distance,
+
+        LimitBreak_Armor,  // 방어력 1% 상승
+        LimitBreak_MaxHp   //  최대 체력 1% 상승
     }
 
     [Header("--- 기본 정보 ---")]
@@ -57,17 +69,3 @@ public class ItemData : ScriptableObject
     [Header("--- 핵심 수치 (레벨별) ---")]
     public float[] values;
 }
-
-/*
-========================================================
-[ ItemData.cs 상세 설명서 (아이템 데이터 템플릿)]
-1. 스크립트 역할:
-   - 유니티의 Scriptable Object 기능을 이용하여, 코드 수정 없이 유니티 에디터 창에서 아이템의 이름, 설명, 레벨별 데미지 수치 등을 직접 입력하고 찍어낼 수 있게 해주는 '데이터 템플릿'입니다.
-
-2. 주요 변수:
-   - ItemType: 이 카드가 어떤 무기/스탯에 속하는지 명찰을 달아줍니다. (예: Orbit_Damage = 도는 칼 데미지 증가 카드)
-   - maxLevel: 이 카드가 최대로 등장할 수 있는 횟수입니다.
-   - baseDesc & levelUpDescs: 레벨업 카드에 띄울 설명글입니다. 1렙 땐 baseDesc를 띄우고, 2렙부터는 levelUpDescs 배열에 적힌 문구를 순서대로 띄웁니다.
-   - values: 각 레벨이 될 때 플레이어에게 더해줄 실제 능력치 숫자들입니다.
-========================================================
-*/
